@@ -29,6 +29,31 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+### Song Features
+
+- `genre`, `mood` — categorical, exact-match bonus
+- `energy`, `valence`, `danceability`, `acousticness` (each 0–1) — numeric, compared to the user's targets
+- `tempo_bpm` — stored, not currently used in scoring
+- `id`, `title`, `artist` — identifying info only, not used in scoring
+
+### UserProfile Features
+
+- `favorite_genre`, `favorite_mood` — matched exactly against the song for a flat bonus
+- `target_energy`, `target_valence`, `target_danceability` — numeric targets compared to the matching song feature
+- `likes_acoustic` (bool) — converted to an implied target (`~0.8` if `True`, `~0.2` if `False`) and compared to `song.acousticness`
+
+### Scoring Rule (one song at a time)
+
+1. For each numeric feature, flip the gap into a 0–1 closeness score: `closeness = 1 - |song_value - target_value|`.
+2. Weighted average across the four: `energy=2, valence=1, danceability=1, acousticness=1`.
+3. Add `+0.3` if genre matches, `+0.3` if mood matches → `final_score`.
+
+### Ranking Rule (the whole list)
+
+Score every song, sort by `final_score` descending, return the top `k`.
+
+Kept separate on purpose: scoring judges one song alone; ranking decides ordering/cutoff across all of them.
+
 ---
 
 ## Getting Started
