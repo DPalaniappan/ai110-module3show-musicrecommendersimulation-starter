@@ -98,12 +98,46 @@ You can add more tests in `tests/test_recommender.py`.
 Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
 
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
+==================================================
+USER PROFILE
+==================================================
+   favorite_genre: pop
+   favorite_mood: happy
+   target_energy: 0.8
+   likes_acoustic: False
+
+==================================================
+TOP RECOMMENDATIONS
+==================================================
+
+1. Sunrise City  (Score: 1.58)
+--------------------------------------------------
+   • Energy is a 98% match (song: 0.82, target: 0.80)
+   • Acousticness is a 98% match (song: 0.18, target: 0.20)
+   • Genre matches your favorite genre: pop
+   • Mood matches your favorite mood: happy
+
+2. Rooftop Lights  (Score: 1.22)
+--------------------------------------------------
+   • Energy is a 96% match (song: 0.76, target: 0.80)
+   • Acousticness is a 85% match (song: 0.35, target: 0.20)
+   • Mood matches your favorite mood: happy
+
+3. Gym Hero  (Score: 1.16)
+--------------------------------------------------
+   • Energy is a 87% match (song: 0.93, target: 0.80)
+   • Acousticness is a 85% match (song: 0.05, target: 0.20)
+   • Genre matches your favorite genre: pop
+
+4. Night Drive Loop  (Score: 0.96)
+--------------------------------------------------
+   • Energy is a 95% match (song: 0.75, target: 0.80)
+   • Acousticness is a 98% match (song: 0.22, target: 0.20)
+
+5. Funk Machine  (Score: 0.95)
+--------------------------------------------------
+   • Energy is a 97% match (song: 0.83, target: 0.80)
+   • Acousticness is a 90% match (song: 0.10, target: 0.20)
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
