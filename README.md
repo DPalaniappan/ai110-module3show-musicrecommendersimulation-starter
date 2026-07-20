@@ -42,11 +42,13 @@ You can include a simple diagram or bullet list if helpful.
 - `target_energy`, `target_valence`, `target_danceability` — numeric targets compared to the matching song feature
 - `likes_acoustic` (bool) — converted to an implied target (`~0.8` if `True`, `~0.2` if `False`) and compared to `song.acousticness`
 
-### Scoring Rule (one song at a time)
+### Scoring Rule/Algorithm Recipe (one song at a time)
 
 1. For each numeric feature, flip the gap into a 0–1 closeness score: `closeness = 1 - |song_value - target_value|`.
 2. Weighted average across the four: `energy=2, valence=1, danceability=1, acousticness=1`.
 3. Add `+0.3` if genre matches, `+0.3` if mood matches → `final_score`.
+
+**Some biases might be the fact that genere and mood bonuses could drown out the numeric fit of the rtecommendation system meaning that if it doesnt fit that well with the numbers but has the right genre and mood then the song will be able to outscore other songs that have a greater numerical fit but dont have the right genre**
 
 ### Ranking Rule (the whole list)
 
