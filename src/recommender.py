@@ -67,6 +67,8 @@ def load_songs(csv_path: str) -> List[Dict]:
 def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     """Scores a song against user preferences, returning a score and list of reasons."""
     weights = {"energy": 2.0, "valence": 1.0, "danceability": 1.0, "acousticness": 1.0}
+    genre_weight = 0.15
+    mood_weight = 0.3
     reasons: List[str] = []
     weighted_sum = 0.0
     total_weight = 0.0
@@ -105,12 +107,12 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     bonus = 0.0
     favorite_genre = user_prefs.get("favorite_genre")
     if favorite_genre and song.get("genre") == favorite_genre:
-        bonus += 0.3
+        bonus += genre_weight
         reasons.append(f"Genre matches your favorite genre: {favorite_genre}")
 
     favorite_mood = user_prefs.get("favorite_mood")
     if favorite_mood and song.get("mood") == favorite_mood:
-        bonus += 0.3
+        bonus += mood_weight
         reasons.append(f"Mood matches your favorite mood: {favorite_mood}")
 
     score = numeric_score + bonus
