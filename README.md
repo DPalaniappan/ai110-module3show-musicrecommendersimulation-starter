@@ -587,8 +587,13 @@ TOP RECOMMENDATIONS
 Use this section to document the experiments you ran. For example:
 
 - What happened when you changed the weight on genre from 2.0 to 0.5
+Raising the energy weight from 2.0 to 4.0 made energy-mismatched songs drop in rank even when they matched the user's favorite genre and mood.
+
 - What happened when you added tempo or valence to the score
+Adding target_valence and target_danceability as optional fields let profiles like "High-Energy Pop" pick songs that felt more specifically upbeat, not just high-energy.
+
 - How did your system behave for different types of users
+Across the four test profiles, genre and mood bonuses only produced the "expected" top pick when the numeric targets also lined up with that song.
 
 ---
 
@@ -599,8 +604,13 @@ Summarize some limitations of your recommender.
 Examples:
 
 - It only works on a tiny catalog
+With 18 songs spread across 15 genres, most niche tastes only have one or two real options to recommend.
+
 - It does not understand lyrics or language
+It scores songs purely on numeric traits and tags, so it has no idea what a song is actually about.
+
 - It might over favor one genre or mood
+The heavy energy weight can override a genre and mood match, so it doesn't always favor genre/mood the way a user might expect.
 
 You will go deeper on this in your model card.
 
@@ -615,7 +625,10 @@ Read and complete `model_card.md`:
 Write 1 to 2 paragraphs here about what you learned:
 
 - about how recommenders turn data into predictions
+I learned that recommenders turn data into predicitons by assinged weights to the numeric traites that the designer specifically wants for their recommendation system. I realized that it really depends what the design is and how you want to go about. Weights allow teh ddesigner to manipulate what gets recommended to the user meaning that the designer and boost certain data they want to be seen vs certain data they don't want to be seen.
+
 - about where bias or unfairness could show up in systems like this
+As stated above bias and unfairness can show up based on what the designer of the sytem wants. For example the companys recommendation system (lets call it a simple system like music recommender) could have a hidden weight thats added to their own content vs content from other parties. This means that the recommendation ssystem will follow the user preferences but the top spots will most likely be original content from the company.
 
 
 

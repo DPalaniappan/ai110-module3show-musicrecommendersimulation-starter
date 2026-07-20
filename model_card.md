@@ -118,7 +118,14 @@ The Metal but Low Energy profile surprised me. I expected the metal/angry song t
 - Any simple tests or comparisons you ran  
 I compared the top pick across profiles to see if it always matched genre and mood, and it did for High-Energy Pop, Chill Lofi, and Deep Intense Rock, but not for Metal but Low Energy. 
 
-No need for numeric metrics unless you created some.
+**Profile comparisons:**
+- High-Energy Pop vs. Chill Lofi: opposite energy targets (0.9 vs. 0.3) flip the winner from an upbeat pop track to a mellow lofi track — makes sense, energy dominates the score.
+- High-Energy Pop vs. Deep Intense Rock: same energy target but different valence/danceability targets still shift the winner (happy pop track vs. a darker rock track) — shows valence/danceability matter once energy is satisfied.
+- High-Energy Pop vs. Metal but Low Energy: opposite energy targets (0.9 vs. 0.1) give completely different winners — confirms energy target alone can flip the whole ranking.
+- Chill Lofi vs. Deep Intense Rock: low vs. high energy targets, plus chill/happy vs. intense/angry moods, pick low-key ambient songs vs. high-energy rock songs — matches intuition.
+- Chill Lofi vs. Metal but Low Energy: both target low-ish energy, but Chill Lofi's top pick matches genre and mood while Metal's genre/mood match only ranks 3rd — shows the catalog has no low-energy metal song, so the bonus can't overcome the energy mismatch.
+- Deep Intense Rock vs. Metal but Low Energy: both "intense" profiles, but opposite energy targets (0.9 vs. 0.1) mean the metal genre never actually wins for the low-energy version — makes sense, since energy is weighted heavier than the genre bonus.
+
 
 ---
 
@@ -129,9 +136,15 @@ Ideas for how you would improve the model next.
 Prompts:  
 
 - Additional features or preferences  
+I could use a different scoring technique rather than weight averages to compute the score. 
 - Better ways to explain recommendations  
+I could rank the reasons by how much each one affected the score, so the biggest factor shows first.
+
 - Improving diversity among the top results  
+I could cap how many songs per artist can appear in the top-k, so the list doesn't repeat the same artist.
+
 - Handling more complex user tastes  
+I could let users pick more than one favorite genre or mood instead of just one each.
 
 ---
 
@@ -142,5 +155,8 @@ A few sentences about your experience.
 Prompts:  
 
 - What you learned about recommender systems  
+Something that I learned about recommender systems is that weights really matter when doing recommendation. I realized that a lot of expermentation eneds to be done for the weights to get the type of resulsts that you beleive is best for users. Addionally more experiments and data need to be collected to learn mroe to see if the system is good enough. For example, given this syustem I would probably look for how long the user has listned to the song or if they maybe added it to their favorites/playlist. Evaluation is key for creating a great recommendation system.
 - Something unexpected or interesting you discovered  
+Something I discovered was how much genre and mood affected the scores even though their bonuses were small in the grand scheme of things. I dsicovered that reducing their weights really helped my recommendation system have a way mroe diverse set of reccomendations that better matched the user preferences.
 - How this changed the way you think about music recommendation apps  
+Ity has taught me how challenging it is to desing a recommendatino algorithm and also why reccomendation alogirthms change so much and so quickly.
